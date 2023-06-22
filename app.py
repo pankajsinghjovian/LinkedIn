@@ -19,7 +19,7 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 def set_chrome() -> Options:
     # setting up the options for the chromium 
     chrome_options = Options()
-    chrome_options.headless = True 
+    chrome_options.headless = True
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -37,8 +37,7 @@ def set_chrome() -> Options:
     chrome_prefs["profile.default_content_settings"]={"images":2}
     return chrome_options
 
-if __name__=="__main__":
-        
+def scrape_jobs():
         driver =webdriver.Chrome(options=set_chrome())
 
         email= os.getenv('user_name')
@@ -68,10 +67,10 @@ if __name__=="__main__":
         sleep(10)    
 
     
-        # #Searching the Job Button through using XPATH and clicking it 
-        # jobs_button=driver.find_element(By.XPATH,'//*[@type="job"]')
-        # jobs_button.click()
-        # sleep(5)
+        #Searching the Job Button through using XPATH and clicking it 
+        jobs_button=driver.find_element(By.XPATH,'//*[@type="job"]')
+        jobs_button.click()
+        sleep(5)
 
         # # Enter the search result 
         # url = f'https://www.linkedin.com/jobs/search/?keywords= Data Analyst'
@@ -87,12 +86,15 @@ if __name__=="__main__":
         # #Applying the filter 
         # driver.find_elements(By.CLASS_NAME,"ember-view.ml2")[0].click()
 
-        # driver.find_element(By.XPATH, '//*[@aria-label="Experience level filter. Clicking this button displays all Experience level filter options."]').click()
-        # sleep(2)
-        # driver.find_element(By.CSS_SELECTOR,("label[for='experience-1']")).click()
-        # sleep(2)
-        # driver.find_element(By.CSS_SELECTOR,("label[for='experience-2']")).click()
-        # sleep(2)
+
+        # sleep(400)
+
+        # # driver.find_element(By.XPATH, '//*[@aria-label="Experience level filter. Clicking this button displays all Experience level filter options."]').click()
+        # # sleep(2)
+        # # driver.find_element(By.CSS_SELECTOR,("label[for='experience-1']")).click()
+        # # sleep(2)
+        # # driver.find_element(By.CSS_SELECTOR,("label[for='experience-2']")).click()
+        # # sleep(2)
         # # Clicking the Submit Button 
         # driver.find_elements(By.CLASS_NAME,"ember-view.ml2")[1].click()
 
@@ -180,10 +182,12 @@ if __name__=="__main__":
 
         
         df=pd.DataFrame.from_dict(details)
-        df.to_csv('LinkedIn_jobs.csv')
-        df.to_excel('LinkedIn_jobs.xlsx')
+        df.to_csv('LinkedIn_jobs.csv', index=None)
+        df.to_excel('LinkedIn_jobs.xlsx', index= None )
         driver.quit()
 
+if __name__=="__main__":
+        scrape_jobs()
         import file_sharing
         file_sharing.send_message()
         file_sharing.send_file()

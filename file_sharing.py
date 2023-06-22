@@ -11,12 +11,12 @@ channel_id=os.getenv("channel_id")
 # print(slack_scraper_token)
 
 # Set the path to the file you want to send
-file_path = r"Linkedin_jobs.csv"
-file_path1= r"Linkedin_jobs.xlsx"
+file_path = r"LinkedIn_jobs.csv"
+file_path1= r"LinkedIn_jobs.xlsx"
 file_list= [ file_path,file_path1]
 
 # #Setting up an Automated Text
-message ="Here is the Indeed scrapped Jobs"
+message ="Here are few LinkedIn scrapped Jobs"
 
 # Initialize the Slack WebClient
 client = WebClient(token=slack_scraper_token)
