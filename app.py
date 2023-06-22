@@ -68,9 +68,11 @@ def scrape_jobs():
 
     
         #Searching the Job Button through using XPATH and clicking it 
-        jobs_button=driver.find_element(By.XPATH,'//*[@type="job"]')
-        jobs_button.click()
-        sleep(5)
+        # jobs_button=driver.find_element(By.XPATH,'//*[@type="job"]')
+        # jobs_button.click()
+        # sleep(5)
+
+
 
         # # Enter the search result 
         # url = f'https://www.linkedin.com/jobs/search/?keywords= Data Analyst'
