@@ -66,40 +66,6 @@ def scrape_jobs():
         sign_in_button.click()
         sleep(10)    
 
-    
-        #Searching the Job Button through using XPATH and clicking it 
-        # jobs_button=driver.find_element(By.XPATH,'//*[@type="job"]')
-        # jobs_button.click()
-        # sleep(5)
-
-
-
-        # # Enter the search result 
-        # url = f'https://www.linkedin.com/jobs/search/?keywords= Data Analyst'
-        # driver.get(url)
-        # sleep(5)
-
-        # #find the Date Posting Filter
-        # driver.find_element(By.CLASS_NAME,'artdeco-hoverable-trigger.artdeco-hoverable-trigger--content-placed-bottom.ember-view').click()
-        # sleep(2)
-        # #Selecting the 24 hours Filter 
-        # driver.find_elements(By.CLASS_NAME, 't-14.t-black--light.t-normal')[2].click()
-        # sleep(3)
-        # #Applying the filter 
-        # driver.find_elements(By.CLASS_NAME,"ember-view.ml2")[0].click()
-
-
-        # sleep(400)
-
-        # # driver.find_element(By.XPATH, '//*[@aria-label="Experience level filter. Clicking this button displays all Experience level filter options."]').click()
-        # # sleep(2)
-        # # driver.find_element(By.CSS_SELECTOR,("label[for='experience-1']")).click()
-        # # sleep(2)
-        # # driver.find_element(By.CSS_SELECTOR,("label[for='experience-2']")).click()
-        # # sleep(2)
-        # # Clicking the Submit Button 
-        # driver.find_elements(By.CLASS_NAME,"ember-view.ml2")[1].click()
-
         url1= 'https://www.linkedin.com/jobs/search/?currentJobId=3638102771&f_E=1%2C2&f_TPR=r86400&keywords=%20Data%20Analyst'
 
         driver.get(url1)
@@ -191,8 +157,8 @@ def scrape_jobs():
 if __name__=="__main__":
         scrape_jobs()
         import file_sharing
-        file_sharing.send_message()
-        file_sharing.send_file()
+        # file_sharing.send_message()
+        # file_sharing.send_file()
 
       
 
