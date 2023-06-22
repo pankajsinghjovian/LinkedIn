@@ -75,7 +75,7 @@ def scrape_jobs():
         # Creating a for- loop to get the details of each job posted on the page 
         details= [] 
         elements = driver.find_elements(By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')
-
+        print (len (elements))
         #listings = element.find_elements(By.CLASS_NAME, 'ember-view')
         for element in elements:
             element.click()
@@ -85,12 +85,14 @@ def scrape_jobs():
             job_name = driver.find_element(By.CLASS_NAME,'t-24.t-bold.jobs-unified-top-card__job-title').text
             # Find Name of the company 
             name = driver.find_element(By.CLASS_NAME,'jobs-unified-top-card__company-name').text
-            # print(name)
+            print(name)
             # Find the location of the JOb
             try:
                 Location= driver.find_element(By.CLASS_NAME,'jobs-unified-top-card__bullet').text
+                print(Location)
             except:
                 Location='NA'
+                print(Location)
             # Find the work- type 
             try:
                 Work_type= driver.find_element(By.CLASS_NAME, 'jobs-unified-top-card__workplace-type').text
@@ -104,8 +106,10 @@ def scrape_jobs():
                 Job_type='NA'
             try:
                 posted=driver.find_element(By.CLASS_NAME,'jobs-unified-top-card__posted-date').text
+                print(posted)
             except:
-                posted='NA'    
+                posted='NA' 
+                   
             try:
                 about_jobs = driver.find_element(By.CLASS_NAME, 'jobs-box--fadein.jobs-box--full-width.jobs-box--with-cta-large.jobs-description').text
                 # print(about_jobs)
@@ -117,8 +121,10 @@ def scrape_jobs():
             try:
                 job_link_class= driver.find_element(By.CLASS_NAME, 'jobs-unified-top-card__content--two-pane')
                 job_link= job_link_class.find_element(By.TAG_NAME,'a').get_attribute('href')
+                print(job_link)
             except:
                 job_link="NA"
+                print(job_link)
             try:
                 Hiring= driver.find_element(By.CLASS_NAME,'jobs-poster__name.t-14.t-black.mb0').text
             except:
