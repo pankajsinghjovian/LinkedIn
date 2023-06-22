@@ -157,8 +157,8 @@ def scrape_jobs():
 if __name__=="__main__":
         scrape_jobs()
         import file_sharing
-        # file_sharing.send_message()
-        # file_sharing.send_file()
+        file_sharing.send_message()
+        file_sharing.send_file()
 
       
 
