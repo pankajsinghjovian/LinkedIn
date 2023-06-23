@@ -55,5 +55,10 @@ sleep(2)
 # Loading the image
 image = Image.open("image.png")
  
-# Showing the images
-image.show()
+# # Showing the images
+# image.show()
+image_path='./image.png'
+image.save(image_path)
+import file_sharing
+file_sharing.send_message()
+file_sharing.send_file()

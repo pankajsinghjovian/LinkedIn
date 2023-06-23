@@ -6,17 +6,14 @@ load_dotenv()
 
 slack_scraper_token = os.getenv('slack_scraper_token')
 channel_id=os.getenv("channel_id")
-# user_name= os.getenv("user_name")
-# print( channel_id)
-# print(slack_scraper_token)
-
+image_path='./image.png'
 # Set the path to the file you want to send
-file_path = r"LinkedIn_jobs.csv"
-file_path1= r"LinkedIn_jobs.xlsx"
-file_list= [ file_path,file_path1]
+file_path = r"image.png"
+# file_path1= r"LinkedIn_jobs.xlsx"
+# file_list= [ file_path,file_path1]
 
 # #Setting up an Automated Text
-message ="Here are few LinkedIn scrapped Jobs"
+message ="Testing image"
 
 # Initialize the Slack WebClient
 client = WebClient(token=slack_scraper_token)
@@ -37,10 +34,10 @@ def send_message():
 
 #Function to send the file
 def send_file():
-     for element in file_list:
-         response =client.files_upload_v2(
-            channel = channel_id,
-            file= element,
+    #  for element in image_path:
+     response =client.files_upload_v2(
+     channel = channel_id,
+     file= image_path,
          )
      if response['ok']:
         print (f"File sent successful")
