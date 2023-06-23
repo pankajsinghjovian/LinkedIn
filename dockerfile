@@ -42,7 +42,7 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 # copying the main script 
 
-COPY app.py app.py
+COPY testing.py testing.py
 
 # copying the file_sharing file 
 COPY file_sharing.py .

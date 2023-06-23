@@ -40,7 +40,7 @@ def set_chrome() -> Options:
 
  
 # Here Chrome  will be used
-driver =webdriver.Chrome(options=set_chrome())
+driver = webdriver.Chrome(options=set_chrome())
  
 # URL of website
 url1= 'https://www.linkedin.com/jobs/search/?currentJobId=3638102771&f_E=1%2C2&f_TPR=r86400&keywords=%20Data%20Analyst'
