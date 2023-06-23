@@ -19,7 +19,7 @@ from selenium import webdriver
 
 # Waiting  for an element to be visible before performing an action
 
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15'
 
 # Setting up the chromium options 
 def set_chrome() -> Options:
@@ -99,7 +99,7 @@ def scrape_jobs():
 
         print (len (elements))
         #listings = element.find_elements(By.CLASS_NAME, 'ember-view')
-        for element in elements:
+        for element in elements[:10]:
             element.click()
             sleep(2)
 
@@ -176,15 +176,15 @@ def scrape_jobs():
         
         df=pd.DataFrame.from_dict(details)
         df.to_csv('LinkedIn_jobs.csv', index=None)
-        df.to_excel('LinkedIn_jobs.xlsx', index= None )
+        df.to_excel('LinkedIn_jobs.xlsx',index= None )
         driver.quit()
 
 if __name__=="__main__":
         
         scrape_jobs()
         import file_sharing
-        file_sharing.send_message()
-        file_sharing.send_file()
+        # file_sharing.send_message()
+        # file_sharing.send_file()
        
 
       
