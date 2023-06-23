@@ -18,7 +18,6 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 
 # Waiting  for an element to be visible before performing an action
-wait = WebDriverWait(driver, 10)  # Maximum wait time of 10 seconds
 
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
 
@@ -56,6 +55,7 @@ def scrape_jobs():
 
         driver.get(link)
         sleep(2)
+        wait = WebDriverWait(driver, 10)  # Maximum wait time of 10 seconds
 
         #locate email form by_class name
 
