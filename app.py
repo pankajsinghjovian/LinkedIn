@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 from time import sleep
 import os 
 from dotenv import load_dotenv
-load_dotenv()
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -40,9 +39,11 @@ def set_chrome() -> Options:
 
 def scrape_jobs():
         driver =webdriver.Chrome(options=set_chrome())
-
+        load_dotenv()
         email= os.getenv('user_name')
         password= os.getenv('password')
+        print( email)
+        print(password)
 
         link ='https://www.linkedin.com/login'
 
@@ -77,7 +78,7 @@ def scrape_jobs():
         elements = driver.find_elements(By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')
         print (len (elements))
         #listings = element.find_elements(By.CLASS_NAME, 'ember-view')
-        for element in elements:
+        for element in elements[:5]:
             element.click()
             sleep(2)
 
@@ -163,9 +164,9 @@ def scrape_jobs():
 
 if __name__=="__main__":
         scrape_jobs()
-        import file_sharing
-        file_sharing.send_message()
-        file_sharing.send_file()
+        # import file_sharing
+        # file_sharing.send_message()
+        # file_sharing.send_file()
 
       
 
