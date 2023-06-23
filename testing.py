@@ -55,5 +55,5 @@ sleep(2)
 # Loading the image
 image = Image.open("image.png")
  
-# Showing the image
+# Showing the images
 image.show()
