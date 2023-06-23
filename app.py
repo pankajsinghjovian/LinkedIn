@@ -14,7 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 # importing webdriver
-# w3
+
 from selenium import webdriver
 
 # Waiting  for an element to be visible before performing an action
@@ -73,7 +73,7 @@ def scrape_jobs():
 
         #.click() to open sign_in through gmail
         sign_in_button.click()
-        sleep(10)    
+        sleep(30)    
 
         url1= 'https://www.linkedin.com/jobs/search/?currentJobId=3638102771&f_E=1%2C2&f_TPR=r86400&keywords=%20Data%20Analyst'
 
@@ -92,11 +92,12 @@ def scrape_jobs():
 
 
 
+
         # # Creating a for- loop to get the details of each job posted on the page 
         details= [] 
-        # elements = driver.find_elements(By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')
-        elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')))
-
+        elements = driver.find_elements(By.CLASS_NAME,'jobs-search-results__list-item')
+        # elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')))
+# class="jobs-search-results-list
         print (len (elements))
         #listings = element.find_elements(By.CLASS_NAME, 'ember-view')
         for element in elements[:10]:
@@ -107,7 +108,7 @@ def scrape_jobs():
             job_name = driver.find_element(By.CLASS_NAME,'t-24.t-bold.jobs-unified-top-card__job-title').text
             # Find Name of the company 
             name = driver.find_element(By.CLASS_NAME,'jobs-unified-top-card__company-name').text
-            # print(name)
+            print(name)
             # Find the location of the JOb
             try:
                 Location= driver.find_element(By.CLASS_NAME,'jobs-unified-top-card__bullet').text
@@ -183,8 +184,8 @@ if __name__=="__main__":
         
         scrape_jobs()
         import file_sharing
-        # file_sharing.send_message()
-        # file_sharing.send_file()
+        file_sharing.send_message()
+        file_sharing.send_file()
        
 
       

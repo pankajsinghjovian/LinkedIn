@@ -13,7 +13,7 @@ file_path1= r"LinkedIn_jobs.xlsx"
 file_list= [file_path,file_path1,image_path]
 
 # #Setting up an Automated Text
-message ="Render testing"
+message ="LinkedIn Jobs"
 
 # Initialize the Slack WebClient
 client = WebClient(token=slack_scraper_token)
