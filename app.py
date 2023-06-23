@@ -8,10 +8,17 @@ from dotenv import load_dotenv
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from PIL import Image
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 # importing webdriver
 # w3
 from selenium import webdriver
+
+# Waiting  for an element to be visible before performing an action
+wait = WebDriverWait(driver, 10)  # Maximum wait time of 10 seconds
 
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
 
@@ -19,7 +26,8 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 def set_chrome() -> Options:
     # setting up the options for the chromium 
     chrome_options = Options()
-    chrome_options.headless = True
+    # chrome_options.headless = True
+    chrome_options.add_argument('--headless=new')
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -42,9 +50,8 @@ def scrape_jobs():
         load_dotenv()
         email= os.getenv('user_name')
         password= os.getenv('password')
-        print( email)
-        print(password)
 
+        
         link ='https://www.linkedin.com/login'
 
         driver.get(link)
@@ -73,12 +80,26 @@ def scrape_jobs():
         driver.get(url1)
         sleep(5)
 
-        # Creating a for- loop to get the details of each job posted on the page 
+        driver.get_screenshot_as_file("image.png")
+        sleep(2)
+        
+        # Loading the image
+        image = Image.open("image.png")
+        
+        # # Showing the images
+        # image.show()
+        image_path='./image.png'
+
+
+
+        # # Creating a for- loop to get the details of each job posted on the page 
         details= [] 
-        elements = driver.find_elements(By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')
+        # elements = driver.find_elements(By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')
+        elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')))
+
         print (len (elements))
         #listings = element.find_elements(By.CLASS_NAME, 'ember-view')
-        for element in elements[:5]:
+        for element in elements:
             element.click()
             sleep(2)
 
@@ -86,7 +107,7 @@ def scrape_jobs():
             job_name = driver.find_element(By.CLASS_NAME,'t-24.t-bold.jobs-unified-top-card__job-title').text
             # Find Name of the company 
             name = driver.find_element(By.CLASS_NAME,'jobs-unified-top-card__company-name').text
-            print(name)
+            # print(name)
             # Find the location of the JOb
             try:
                 Location= driver.find_element(By.CLASS_NAME,'jobs-unified-top-card__bullet').text
@@ -140,15 +161,11 @@ def scrape_jobs():
                         'Job Title': job_name,
                         'Company Name':name,
                         'Job Link':job_link,
-                        #'Company Link':company_link,
                         'Location': Location,
                         #'Work Method': Work_type,
                         'Posted On': posted,
                         'Job Description': about_jobs.replace('\n', ' ')
-                        #'Overall_experience':int(numbers),
-                        #'Hiring Team Member': Hiring,
-                        # 'Skills Required': skill,
-                        #'Responsibilities': 
+
                         })
             # Get the body element and send the PAGE_DOWN key
             body = driver.find_element(By.TAG_NAME,"body")
@@ -163,10 +180,12 @@ def scrape_jobs():
         driver.quit()
 
 if __name__=="__main__":
+        
         scrape_jobs()
-        # import file_sharing
-        # file_sharing.send_message()
-        # file_sharing.send_file()
+        import file_sharing
+        file_sharing.send_message()
+        file_sharing.send_file()
+       
 
       
 
