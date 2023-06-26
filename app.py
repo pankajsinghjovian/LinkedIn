@@ -74,13 +74,18 @@ def scrape_jobs():
 
         image1= Image.open("image1.png")
         image_path1="image1.png"
-        
+
         #locate submit button by_xpath
         sign_in_button=driver.find_element(By.XPATH,'//*[@type="submit"]')
 
         #.click() to open sign_in through gmail
         sign_in_button.click()
-        sleep(30)    
+        sleep(30)  
+
+        driver.get_screenshot_as_file("images.png")
+        sleep(2)
+        images= Image.open("images.png")
+        image_paths="images.png"
 
         # url1= 'hhttps://www.linkedin.com/jobs/search/?currentJobId=3641532812&f_E=1%2C2&geoId=102713980&keywords=Data%20Analyst&location=India&refresh=true'
         url1= 'https://www.linkedin.com/jobs/search/?currentJobId=3646759097&f_E=1%2C2&f_TPR=r86400&geoId=102713980&keywords=Data%20Analyst&location=India&refresh=true'
@@ -89,6 +94,7 @@ def scrape_jobs():
 
         driver.get_screenshot_as_file("image.png")
         sleep(2)
+        
         
         # Loading the image
         image = Image.open("image.png")
