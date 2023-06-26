@@ -68,7 +68,13 @@ def scrape_jobs():
         driver.find_element(By.XPATH,'//*[@id="password"]').send_keys(password)
         sleep(4)
 
+        # Taking the screenshot of the login page
+        driver.get_screenshot_as_file("image1.png")
+        sleep(2)
 
+        image1= Image.open("image1.png")
+        image_path1="image1.png"
+        
         #locate submit button by_xpath
         sign_in_button=driver.find_element(By.XPATH,'//*[@type="submit"]')
 
