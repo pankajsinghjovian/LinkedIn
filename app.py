@@ -28,7 +28,7 @@ def set_chrome() -> Options:
     # setting up the options for the chromium 
     chrome_options = Options()
     # chrome_options.headless = True
-    chrome_options.add_argument('--headless=new')
+    # chrome_options.add_argument('--headless=new')
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -54,7 +54,6 @@ def scrape_jobs():
 
         
         link ='https://www.linkedin.com/login'
-
         driver.get(link)
         sleep(2)
         wait = WebDriverWait(driver, 10)  # Maximum wait time of 10 seconds
@@ -77,7 +76,7 @@ def scrape_jobs():
         sign_in_button.click()
         sleep(30)    
 
-        url1= 'https://www.linkedin.com/jobs/search/?currentJobId=3638102771&f_E=1%2C2&f_TPR=r86400&keywords=%20Data%20Analyst'
+        url1= 'hhttps://www.linkedin.com/jobs/search/?currentJobId=3641532812&f_E=1%2C2&geoId=102713980&keywords=Data%20Analyst&location=India&refresh=true'
 
         driver.get(url1)
         sleep(5)
@@ -98,8 +97,7 @@ def scrape_jobs():
         # # Creating a for- loop to get the details of each job posted on the page 
         details= [] 
         elements = driver.find_elements(By.CLASS_NAME,'jobs-search-results__list-item')
-        # elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'jobs-search-results__list-item.occludable-update.p0.relative.scaffold-layout__list-item')))
-# class="jobs-search-results-list
+       
         print (len (elements))
         #listings = element.find_elements(By.CLASS_NAME, 'ember-view')
         for element in elements[:10]:
