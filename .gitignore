@@ -9,3 +9,4 @@ indeed.py
 .env
 .vscode
 *.png
+*testing.py

@@ -28,7 +28,7 @@ def set_chrome() -> Options:
     # setting up the options for the chromium 
     chrome_options = Options()
     # chrome_options.headless = True
-    # chrome_options.add_argument('--headless=new')
+    chrome_options.add_argument('--headless=new')
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -56,7 +56,7 @@ def scrape_jobs():
         link ='https://www.linkedin.com/login'
         driver.get(link)
         sleep(2)
-        wait = WebDriverWait(driver, 10)  # Maximum wait time of 10 seconds
+        # wait = WebDriverWait(driver, 10)  # Maximum wait time of 10 seconds
 
         #locate email form by_class name
 
@@ -76,8 +76,8 @@ def scrape_jobs():
         sign_in_button.click()
         sleep(30)    
 
-        url1= 'hhttps://www.linkedin.com/jobs/search/?currentJobId=3641532812&f_E=1%2C2&geoId=102713980&keywords=Data%20Analyst&location=India&refresh=true'
-
+        # url1= 'hhttps://www.linkedin.com/jobs/search/?currentJobId=3641532812&f_E=1%2C2&geoId=102713980&keywords=Data%20Analyst&location=India&refresh=true'
+        url1= 'https://www.linkedin.com/jobs/search/?currentJobId=3646759097&f_E=1%2C2&f_TPR=r86400&geoId=102713980&keywords=Data%20Analyst&location=India&refresh=true'
         driver.get(url1)
         sleep(5)
 
